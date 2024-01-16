@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+
+  postgres:
+      image: postgres:latest
+      restart: always
+      env_file:
+          - variables.env
+      volumes:
+          - pg_data:/var/lib/postgresql/data
+      ports:
+          - "5432:5432"
+
+volumes:
+  pg_data:
